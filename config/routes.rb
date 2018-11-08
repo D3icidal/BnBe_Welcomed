@@ -4,8 +4,18 @@ Rails.application.routes.draw do
 
   #HOSTs (users)
   post '/hosts' => 'hosts#create'
+  get '/hosts/new' => 'hosts#new'
   get '/hosts' => 'hosts#index'
-  get '/hosts' => 'hosts#show'
+  get '/hosts/:id' => 'hosts#show'
   patch '/hosts/:id' => 'hosts#update'
   delete 'hosts/:id' => 'hosts#destroy'
+
+  #HOMEs (houses)
+  post '/homes' => 'homes#create'
+  get '/homes/new' => 'homes#new'
+  get '/homes' => 'homes#index'
+  get '/homes/:id' => 'homes#show'
+  patch '/homes/:id' => 'homes#update'
+  delete 'homes/:id' => 'homes#destroy'
+
 end
