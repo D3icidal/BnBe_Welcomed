@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_031534) do
+ActiveRecord::Schema.define(version: 2018_11_10_231709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,18 +21,15 @@ ActiveRecord::Schema.define(version: 2018_11_08_031534) do
     t.string "status"
     t.string "wifi_password"
     t.string "guest_password"
-    t.date "guest_expires"
-    t.string "address"
+    t.string "street_address"
     t.string "zipcode"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.boolean "parking?"
-    t.boolean "smart_wifi?"
-    t.boolean "smart_thermastat?"
-    t.text "private_parking_instructions"
-    t.text "street_parking_instructions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment_id"
+    t.string "state"
   end
 
   create_table "hosts", force: :cascade do |t|
