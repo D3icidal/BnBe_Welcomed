@@ -3,6 +3,11 @@ class HomesController < ApplicationController
     render 'new.html.erb'
   end
 
+  def index
+    @homes = Homes.find_by(host_id: 1)      #TODO host_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
+    
+  end
+
   def create
     home = Home.new(
       first_name: params[:first_name],
