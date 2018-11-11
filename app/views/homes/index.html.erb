@@ -10,7 +10,7 @@
 <body>
 
   index.html.erb
-  Display all homes index <br> <br>
+  Display all homes index for <%= Host.first.first_name %> <%= Host.first.last_name %> (id: <%= Host.first.id %>) <br> <br>
 
   <% @homes.each do |home| %>
     <br>
@@ -27,6 +27,7 @@
     <p> updated_at: <%= home.updated_at %> </p>
     <p> db id: <%= home.id %> </p>
     <br>
+    <!-- <p> Delete?  -->
     <hr>
   <% end %>
 

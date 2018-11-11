@@ -35,14 +35,41 @@ class HomesController < ApplicationController
   def show
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
-      render 'show.html.erb'
+      render "show.html.erb"
     else
       render html: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
     end
   end
 
-  # def update
-  # end
+  def edit
+    if Home.find_by(id: params[:id])
+      @home = Home.find_by(id: params[:id])
+      render "edit.html.erb"
+    else
+      render html: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
+    end
+  end
+
+
+  def update    
+    @home = Home.find_by(id: params[:id])
+    @home.name = params[:name]
+    @home.host_id = Host.first.id   #TODO hardcoded
+    @home.is_active = params[:is_active] || true
+    @home.wifi_password = params[:wifi_password] || nil      
+    @home.bedrooms = params[:bedrooms] || 1
+    @home.bathrooms = params[:bathrooms] || 1
+    @home.zipcode = params[:zipcode]
+    @home.street_address = params[:street_address]
+    @home.state = params[:state]
+      
+    if @home.save!
+      # render json: {message: 'Home created successfully'}, status: :created
+      redirect_to "/homes/#{@home.id}"
+    else
+      render json: {errors: home.errors.full_messages}, status: :bad_request
+    end
+  end
 
   # def destroy #might skip this one
   # end

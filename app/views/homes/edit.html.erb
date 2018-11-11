@@ -1,0 +1,19 @@
+edit.html.erb
+
+Edit home here
+
+<form action="/homes/<%= @home.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+    <p> host_id: <%= @home.host_id %> - <%= Host.find(@home.host_id).first_name %> <%= Host.find(@home.host_id).last_name %> </p>
+    Editable:
+    <p> <h5>Name:  <input type="text" value="<%= @home.name %>" name="name" </h5></p>
+    <p> is_active: <input type="text" value="<%= @home.is_active %>" name="is_active" </p>
+    <p> wifi_password: <input type="text" value="<%= @home.wifi_password %>" name="wifi_password" </p>      
+    <p> bedrooms: <input type="text" value="<%= @home.bedrooms %>" name="bedrooms" </p>
+    <p> bathrooms: <input type="text" value="<%= @home.bathrooms %>" name="bathrooms" </p>
+    <p> zipcode: <input type="text" value="<%= @home.zipcode %>" name="zipcode" </p>
+    <p> state: <input type="text" value="<%= @home.state %>" name="state" </p>
+    <br><br>
+    <p><input type="submit"> </p>
+
+</form>
