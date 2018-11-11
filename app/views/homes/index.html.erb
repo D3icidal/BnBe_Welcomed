@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Hello, world!</title>
+</head>
+<body>
+
+  index.html.erb
+  Display all homes index <br> <br>
+
+  <% @homes.each do |home| %>
+    <br>
+    <p> <h5>Name:  <%= home.name %> </h5></p>
+    <p> host_id: <%= home.host_id %> - <%= Host.find(home.host_id).first_name %> <%= Host.find(home.host_id).last_name %> </p>
+    <p> comment_ids: <%= home.comment_id %> </p>
+    <p> is_active: <%= home.is_active %> </p>
+    <p> wifi_password: <%= home.wifi_password %> </p>      
+    <p> bedrooms: <%= home.bedrooms %> </p>
+    <p> bathrooms: <%= home.bathrooms %> </p>
+    <p> zipcode: <%= home.zipcode %> </p>
+    <p> state: <%= home.state %> </p>
+    <p> created_at: <%= home.created_at %> </p>
+    <p> updated_at: <%= home.updated_at %> </p>
+    <p> db id: <%= home.id %> </p>
+    <br>
+    <hr>
+  <% end %>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  </body>
+  </html>
+
+
+
+
+
+

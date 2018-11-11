@@ -9,6 +9,7 @@ class HostsController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
+      phone: params[:phone] || nil,
       bio: params[:bio],
       image_url: params[:image_url],      
       password: params[:password],

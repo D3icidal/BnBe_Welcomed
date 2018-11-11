@@ -4,24 +4,25 @@ class HomesController < ApplicationController
   end
 
   def index
-    @homes = Homes.find_by(host_id: 1)      #TODO host_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
-    
+    @homes = Home.where(host_id: Host.first.id)      #TODO host_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
+    puts "\n\t\t homes - index. find_by(host_id: #{Host.first.id}"
+    render "index.html.erb"
   end
 
   def create
-    home = Home.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      bio: params[:bio],
-      image_url: params[:image_url],      
-      password: params[:password],
-      password_confirmation: params[:password_confirmation]
-    )
+    @home = Home.new(
+      name: params[:name],
+      host_id: Host.first.id,   #TODO hardcoded
+      is_active: params[:is_active] || true,
+      wifi_password: params[:wifi_password] || nil,      
+      bedrooms: params[:bedrooms] || 1,
+      bathrooms: params[:bathrooms] || 1,
+      zipcode: params[:zipcode]
+      )
 
-    if home.save!
-      render json: {message: 'Home created successfully'}, status: :created
-      # redirect_to "/hosts/#{home.id}"
+    if @home.save!
+      # render json: {message: 'Home created successfully'}, status: :created
+      redirect_to "/homes/#{home.id}"
     else
       render json: {errors: home.errors.full_messages}, status: :bad_request
     end
@@ -45,8 +46,5 @@ class HomesController < ApplicationController
 
   # def destroy #might skip this one
   # end
-
-end
-
 
 end
