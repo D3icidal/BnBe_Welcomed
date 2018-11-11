@@ -6,14 +6,14 @@ class HostsController < ApplicationController
 
   def create
     host = Host.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
+      first_name: params[:first_name] || nil,
+      last_name: params[:last_name] || nil,
+      email: params[:email] || nil,
       phone: params[:phone] || nil,
-      bio: params[:bio],
-      image_url: params[:image_url],      
-      password: params[:password],
-      password_confirmation: params[:password_confirmation]
+      bio: params[:bio] || nil,
+      image_url: params[:image_url] || nil,      
+      password: params[:password] || "password",
+      password_confirmation: params[:password_confirmation] || "password"
     )
 
     if host.save!
