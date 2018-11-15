@@ -15,3 +15,6 @@ make sure CRUD works for Homes
 index for site
 host edit
 start guest section
+
+Associations:
+Home
