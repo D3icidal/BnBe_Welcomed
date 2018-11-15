@@ -2,7 +2,7 @@ class HostsController < ApplicationController
   def new
     render 'new.html.erb'
   end
-
+      
 
   def create
     host = Host.new(

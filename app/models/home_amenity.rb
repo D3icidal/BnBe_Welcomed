@@ -1,0 +1,2 @@
+class HomeAmenity < ApplicationRecord
+end

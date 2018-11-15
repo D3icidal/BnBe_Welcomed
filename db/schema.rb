@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_194745) do
+ActiveRecord::Schema.define(version: 2018_11_15_003454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.string "icon_url"
+    t.text "generic_instructions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "home_id"
+    t.date "checkin"
+    t.date "checkout"
+    t.string "checkout_reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guestbook_comments", force: :cascade do |t|
+    t.integer "home_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "home_amenities", force: :cascade do |t|
+    t.integer "home_id"
+    t.integer "amenity_id"
+    t.boolean "is_usable"
+    t.string "location"
+    t.text "instructions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "homes", force: :cascade do |t|
     t.integer "host_id"
@@ -40,6 +73,12 @@ ActiveRecord::Schema.define(version: 2018_11_11_194745) do
     t.text "bio"
     t.string "image_url"
     t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer "home_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,2 @@
+class GuestbookComment < ApplicationRecord
+end
