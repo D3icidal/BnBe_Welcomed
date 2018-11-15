@@ -1,0 +1,37 @@
+PageFlow.txt
+
+splash page
+  Guest-login - Guest-login   => home-guestpage
+  login - host    => login page
+  signup - host   => signup page
+
+login page (host) => host homepage
+  username/password
+  oauth
+  signup link => signup page
+
+signup page (host)
+  username/password
+  oauth
+
+home-guestpage
+  Welcome Splash image
+  quick guide
+  all the damn features
+  contact-host => contact feature?
+  wifi
+  amenities
+
+host-homepage (seperate pages? 1 page if more than 1 home owned?)
+  index page for all homes => host can select one particular home
+      OR
+  single-home page
+    edit features
+    edit amenities
+    edit general info
+    switch to another home (if user owns more than one home)
+    switch to guest view
+    blog stuff (blog, tips, ideas, tv)
+    
+
+

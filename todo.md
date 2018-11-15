@@ -18,3 +18,19 @@ start guest section
 
 Associations:
 Home
+
+nov 14:
+restructured all tables (schema v2)
+added associations
+tested associations
+added sample data into DB
+add PAGEFLOW / SITEFLOW text file with firstglance general idea about what webpages there will be.
+
+====
+
+nexttime:
+add routes
+create sample html
+maybe start designing wireframe of pages
+
+
