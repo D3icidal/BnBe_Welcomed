@@ -41,5 +41,7 @@ front end vue
 
 ===
 
+next time:
+
 maybe start designing wireframe of pages
 devise?
