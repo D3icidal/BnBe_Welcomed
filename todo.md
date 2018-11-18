@@ -28,9 +28,17 @@ add PAGEFLOW / SITEFLOW text file with firstglance general idea about what webpa
 
 ====
 
-nexttime:
-add routes
+nov 18:
+change from html front end stuff to json returns
+
 create sample html
+add routes
+
+switch to api returns
+refactor pageflow wireframe
+front end vue
+
+===
+
 maybe start designing wireframe of pages
-
-
+devise?

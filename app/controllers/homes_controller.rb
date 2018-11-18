@@ -6,7 +6,8 @@ class HomesController < ApplicationController
   def index
     @homes = Home.where(host_id: Host.first.id)      #TODO host_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
     puts "\n\t\t homes - index. find_by(host_id: #{Host.first.id}"
-    render "index.html.erb"
+    # render "index.html.erb"
+    render "index.json.jbuilder"
   end
 
   def create
@@ -31,22 +32,23 @@ class HomesController < ApplicationController
   # def index
 
   # end
-
   def show
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
-      render "show.html.erb"
+      # render "show.html.erb"
+      render "show.json.jbuilder"
     else
-      render html: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
+      render json: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
     end
   end
+
 
   def edit
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
-      render "edit.html.erb"
+      render "edit.html.erb"    #TODO will be replaced by vue
     else
-      render html: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
+      render json: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
     end
   end
 

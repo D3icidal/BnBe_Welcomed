@@ -1,0 +1,1 @@
+json.partial! "home.json.jbuilder", home: @home

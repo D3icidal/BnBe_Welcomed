@@ -1,0 +1,17 @@
+edit.html.erb
+
+Edit host details here
+
+<form action="/hosts/<%= @host.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+    <p>ID: <%= @host.id %></p>
+    <p>first_name: <input type="text" value="<%= @host.first_name %>" name="first_name"</p>
+    <p>last_name: <input type="text" value="<%= @host.last_name %>" name="last_name"</p>
+    <p>email: <input type="text" value="<%= @host.email %>" name="email"</p>
+    <p>bio: <input type="text" value="<%= @host.bio %>" name="bio"</p>
+    <p>image_url: <input type="text" value="<%= @host.image_url %>" name="image_url"</p>
+    <p>phone: <input type="text" value="<%= @host.phone %>" name="phone"</p>
+    <br><br>
+    <p><input type="submit"> </p>
+
+</form>

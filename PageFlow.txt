@@ -1,21 +1,21 @@
 PageFlow.txt
 
 splash page
-  Guest-login - Guest-login   => home-guestpage
+  Guest-login    => home-guestpage
   login - host    => login page
   signup - host   => signup page
 
 login page (host) => host homepage
-  username/password
-  oauth
+  username/password ()
+    #oauth (nice to have)
   signup link => signup page
 
 signup page (host)
   username/password
-  oauth
+    #oauth (nice to have)
 
 home-guestpage
-  Welcome Splash image
+  Welcome Splash image 
   quick guide
   all the damn features
   contact-host => contact feature?
@@ -25,13 +25,16 @@ home-guestpage
 host-homepage (seperate pages? 1 page if more than 1 home owned?)
   index page for all homes => host can select one particular home
       OR
-  single-home page
+  single-home page - Welcome Splash page similiar to home-guestpage but editable (like linkedin, myspace)
+    toolbar/navbar 
+      switch to another home (if user owns more than one home) => dropdown including index as first entry
+      switch to guest view (needs fancy icon that is apparent, maybe hollow icon that is filled when a auth host is logged in but viewing as a guest)
+      signout
+      #blog stuff (blog, tips, ideas, tv)
+
     edit features
     edit amenities
     edit general info
-    switch to another home (if user owns more than one home)
-    switch to guest view
-    blog stuff (blog, tips, ideas, tv)
     
 
 
