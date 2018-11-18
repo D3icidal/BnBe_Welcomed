@@ -1,9 +1,13 @@
 PageFlow.txt
 
 splash page
+  navbar
+    login - host    => login page
+    signup - host   => signup page
+    #blog
   Guest-login    => home-guestpage
-  login - host    => login page
-  signup - host   => signup page
+  How-to
+  What can a welcomeguide do for you?
 
 login page (host) => host homepage
   username/password ()
@@ -11,10 +15,13 @@ login page (host) => host homepage
   signup link => signup page
 
 signup page (host)
-  username/password
+  username/password/email entry form => hostpage
     #oauth (nice to have)
 
 home-guestpage
+  navbar
+    login 
+    signup
   Welcome Splash image 
   quick guide
   all the damn features

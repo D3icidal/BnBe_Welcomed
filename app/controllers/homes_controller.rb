@@ -7,7 +7,10 @@ class HomesController < ApplicationController
     @homes = Home.where(host_id: Host.first.id)      #TODO host_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
     puts "\n\t\t homes - index. find_by(host_id: #{Host.first.id}"
     # render "index.html.erb"
-    render "index.json.jbuilder"
+    #TODO maybe change this to case/when 
+    render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
+    redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home
+    redirect_to "/homes/new" if @homes.length == 0    #no homes = make new home
   end
 
   def create

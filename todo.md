@@ -31,6 +31,7 @@ add PAGEFLOW / SITEFLOW text file with firstglance general idea about what webpa
 nov 18:
 change from html front end stuff to json returns
 
+if host only has 1 index = redirect to single show isntead
 create sample html
 add routes
 
