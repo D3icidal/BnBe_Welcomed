@@ -41,7 +41,22 @@ front end vue
 
 ===
 
-next time:
+Nov 21:
 
+Create pages
+create login
+minimize/minify?
 maybe start designing wireframe of pages
-devise?
+devise? https://stephenhowells.net/rails-5-user-registration-with-devise-vue-js-and-axios/
+
+=========
+
+Nov 25:
+Auth
+change from 'host' to 'users'
+Working on host login - finish routes for it.
+create more vue pages (add/create new home for a host, edit home ammenities/features, home-guest entry form)
+figure out how to handle guest login - what do you do with password, does it need to be hashed or can it be plaintext since it is onetime use,
+create. a home-guest page
+add login/signup with devise
+figure out how to implement devise and redo host schema to match

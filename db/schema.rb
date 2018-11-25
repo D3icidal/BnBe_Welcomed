@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_023824) do
+ActiveRecord::Schema.define(version: 2018_11_25_203128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_023824) do
   end
 
   create_table "homes", force: :cascade do |t|
-    t.integer "host_id"
+    t.integer "user_id"
     t.string "name"
     t.string "is_active"
     t.string "wifi_password"
@@ -69,7 +69,14 @@ ActiveRecord::Schema.define(version: 2018_11_15_023824) do
     t.string "state"
   end
 
-  create_table "hosts", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
+    t.integer "home_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "url"
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "phone"
     t.string "password_digest"
@@ -80,13 +87,6 @@ ActiveRecord::Schema.define(version: 2018_11_15_023824) do
     t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.integer "home_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "url"
   end
 
 end

@@ -1,0 +1,9 @@
+json.first_name user.first_name
+json.last_name  user.last_name
+json.email  user.email
+json.phone  user.phone
+json.bio  user.bio
+json.image_url  user.image_url
+json.id user.id
+json.created_at  user.created_at
+json.updated_at  user.updated_at

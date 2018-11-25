@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   # verb "/urls" => "namespace/controllers#action"
 
   #HOSTs (users)
-  post '/hosts' => 'hosts#create'
-  get '/hosts/new' => 'hosts#new'
-  # get '/hosts' => 'hosts#index'
-  get '/hosts/:id' => 'hosts#show'
-  get 'hosts/:id/edit' => 'hosts#edit'  #Host goes to a page to submit edits for a home's details
-  patch '/hosts/:id' => 'hosts#update'
-  delete 'hosts/:id' => 'hosts#destroy' #changes db is_active
+  post '/users' => 'users#create'
+  get '/users/new' => 'users#new'
+  # get '/users' => 'users#index'
+  get '/users/:id' => 'users#show'
+  get 'users/:id/edit' => 'users#edit'  #Host goes to a page to submit edits for a home's details
+  patch '/users/:id' => 'users#update'
+  delete 'users/:id' => 'users#destroy' #changes db is_active
 
   #HOMEs (houses)
   post '/homes' => 'homes#create'       #Home is added to DB
