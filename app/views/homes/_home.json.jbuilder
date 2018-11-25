@@ -1,5 +1,5 @@
-# json.id home.id
-json.host_id home.host_id
+json.id home.id
+json.user_id home.user_id
 json.name home.name
 json.guestbook_comments home.guestbook_comments
 json.is_active home.is_active 

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   patch '/users/:id' => 'users#update'
   delete 'users/:id' => 'users#destroy' #changes db is_active
 
+  #SESSIONS (host login)
+  post "/sessions" => "sessions#create"  
+
   #HOMEs (houses)
   post '/homes' => 'homes#create'       #Home is added to DB
   get '/homes/new' => 'homes#new'       #Host creates new home under their current_id

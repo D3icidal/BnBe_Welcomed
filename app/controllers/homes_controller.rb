@@ -1,13 +1,20 @@
 class HomesController < ApplicationController
-#JSON RETURNS ONLY
+  before_action :authenticate_user  
+  #JSON RETURNS ONLY
 
   def new
     render 'new.html.erb' #TODO json
   end
 
   def index
-    @homes = Home.where(user_id: User.first.id)      #TODO user_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
-    puts "\n\t\t homes - index. find_by(user_id: #{User.first.id}"
+    if current_user
+      puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
+    else
+      puts "\n\n\t No User Logged in !!! ********* \n\n"
+    end
+
+    @homes = Home.where(user_id: current_user.id)      #TODO user_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
+    puts "\n\t\t homes - index. find_by(user_id: #{current_user.id}\t***********\n\n"
     #TODO maybe change this to case/when 
     render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
     redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home
@@ -37,6 +44,11 @@ class HomesController < ApplicationController
 
   # end
   def show
+    if current_user
+      puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
+    else
+      puts "\n\n\t No User Logged in !!! ********* \n\n"
+    end
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
       # render "show.html.erb"
@@ -60,7 +72,7 @@ class HomesController < ApplicationController
   def update    
     @home = Home.find_by(id: params[:id])
     @home.name = params[:name]
-    @home.user_id = User.first.id   #TODO hardcoded
+    # @home.user_id = current_user.id
     @home.is_active = params[:is_active] || true
     @home.wifi_password = params[:wifi_password] || nil      
     @home.bedrooms = params[:bedrooms] || 1
