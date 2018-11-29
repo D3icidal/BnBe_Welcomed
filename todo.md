@@ -57,10 +57,14 @@ change from 'host' to 'users'
 Working on host login - finish routes for it.
 create more vue pages (add/create new home for a host, edit home ammenities/features, home-guest entry form)
 
+=====
+
 next time:
+display error pages for auth (when bad password entered,
 finish test vue home edit screen
 BUG: keep getting logged out of vue constantly. loosing jwt?
 figure out how to handle guest login - what do you do with password, does it need to be hashed or can it be plaintext since it is onetime use,
 create. a home-guest page
 add login/signup with devise
 figure out how to implement devise and redo host schema to match
+when viewing index but not logged in => redirect to home with error message

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   #HOMEs (houses)
   post '/homes' => 'homes#create'       #Home is added to DB
-  get '/homes/new' => 'homes#new'       #Host creates new home under their current_id
+  # get '/homes/new' => 'homes#new'       #Host creates new home under their current_id
   get '/homes' => 'homes#index'         #Host sees all of their own homes, if more than one
   get '/homes/:id' => 'homes#show'      #Host sees one specific home
   get 'homes/:id/edit' => 'homes#edit'  #Host goes to a page to submit edits for a home's details

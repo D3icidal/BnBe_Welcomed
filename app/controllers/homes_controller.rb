@@ -6,14 +6,16 @@ class HomesController < ApplicationController
     render 'new.html.erb' #TODO json
   end
 
-  def index
+  def index #TODO validate current_user and put all logic inside that statement.
     if current_user
       puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
     else
       puts "\n\n\t No User Logged in !!! ********* \n\n"
+      puts "\n\n\tfailed in index**********\n"
+      render json: {errors: @person.errors.full_messages}, status: :bad_request
     end
 
-    @homes = Home.where(user_id: current_user.id)      #TODO user_id: 1 used for simplicity, eventually add authentication current_user. This also returns all homes, not just "Active" ones
+    @homes = Home.where(user_id: current_user.id)    
     puts "\n\t\t homes - index. find_by(user_id: #{current_user.id}\t***********\n\n"
     #TODO maybe change this to case/when 
     render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
@@ -22,21 +24,30 @@ class HomesController < ApplicationController
   end
 
   def create
+    if current_user
+      puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
+    else
+      puts "\n\n\t No User Logged in !!! ********* \n\n"
+      puts "\n\n\tfailed in create**********\n"
+      render json: {errors: @person.errors.full_messages}, status: :bad_request
+    end
     @home = Home.new(
-      name: params[:name],
-      user_id: User.first.id,   #TODO hardcoded
-      is_active: params[:is_active] || true,
+      name: params[:name],  #must have a name or fails validation
+      user_id: current_user.id,   
+      is_active: true,
       wifi_password: params[:wifi_password] || nil,      
       bedrooms: params[:bedrooms] || 1,
       bathrooms: params[:bathrooms] || 1,
-      zipcode: params[:zipcode]
+      street_address: params[:street_address] || ""
+      # zipcode: params[:zipcode]
       )
 
-    if @home.save!
-      # render json: {message: 'Home created successfully'}, status: :created
-      redirect_to "/homes/#{home.id}"
+    if @home.save
+      puts "\n\n\tinside create, home saved! #{@home}\n\n"
+      render json: {message: 'Home created successfully'}, status: :created
     else
-      render json: {errors: home.errors.full_messages}, status: :bad_request
+      puts "\n\n\tinside create, home failed! #{@home}\n\n"
+      render json: {errors: @home.errors.full_messages}, status: :bad_request
     end
   end
 
@@ -82,8 +93,8 @@ class HomesController < ApplicationController
     @home.state = params[:state]
       
     if @home.save!
-      # render json: {message: 'Home created successfully'}, status: :created
-      redirect_to "/homes/#{@home.id}"
+      render json: {message: 'Home created successfully'}, status: :created
+      # redirect_to "/homes/#{@home.id}"
     else
       render json: {errors: home.errors.full_messages}, status: :bad_request
     end
