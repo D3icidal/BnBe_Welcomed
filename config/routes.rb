@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   patch '/users/:id' => 'users#update'
   delete 'users/:id' => 'users#destroy' #changes db is_active
 
+
   #SESSIONS (host login)
   post "/sessions" => "sessions#create"  
+
 
   #HOMEs (houses)
   post '/homes' => 'homes#create'       #Home is added to DB
@@ -23,4 +25,16 @@ Rails.application.routes.draw do
   patch '/homes/:id' => 'homes#update'  #Home - changes get commited to DB
   delete 'homes/:id' => 'homes#destroy' #Home gets marked as inactive in DB
 
+
+  #BOOKING-SESSIONS (GUEST LOGINS)
+  #get '/bookings/sessions/new' => 'booking_sessions#new'     #guestlogin to see home - handled in view
+  post '/bookings/:booking_code'  => 'booking_sessions#create' #guestlogin create token session
+
+  get '/bookings/:booking_code'  =>  'booking#show'  #guest go to home/ use home
+
+
+  #WILDCARDs
+  #get '/:booking_code'  => 'bookings#show'  #wildcard link to go straight to homes login/show - needs to redirect to guest login/show as necessary
+
+  #need to work on TODO bookings, booking_sessions, Host-create guest session, Guest - login to session, Guest - view home, Gest logout, host force end session
 end

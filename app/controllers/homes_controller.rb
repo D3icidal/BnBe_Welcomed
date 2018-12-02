@@ -2,17 +2,13 @@ class HomesController < ApplicationController
   before_action :authenticate_user  
   #JSON RETURNS ONLY
 
-  def new
-    render 'new.html.erb' #TODO json
-  end
-
   def index #TODO validate current_user and put all logic inside that statement.
     if current_user
       puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
     else
       puts "\n\n\t No User Logged in !!! ********* \n\n"
       puts "\n\n\tfailed in index**********\n"
-      render json: {errors: @person.errors.full_messages}, status: :bad_request
+      render json: {}, status: :bad_request
     end
 
     @homes = Home.where(user_id: current_user.id)    
@@ -65,7 +61,7 @@ class HomesController < ApplicationController
       # render "show.html.erb"
       render "show.json.jbuilder"
     else
-      render json: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
+      render json: "Bad lookup. ID searched: #{params[:id]}", status: :bad_request #TODO make an error page
     end
   end
 
@@ -75,7 +71,7 @@ class HomesController < ApplicationController
       @home = Home.find_by(id: params[:id])
       render "edit.html.erb"    #TODO will be replaced by vue
     else
-      render json: "Bad lookup. ID searched: #{params[:id]}" #TODO make an error page
+      render json: "Bad lookup. ID searched: #{params[:id]}", status: :bad_request #TODO make an error page
     end
   end
 
@@ -96,7 +92,7 @@ class HomesController < ApplicationController
       render json: {message: 'Home created successfully'}, status: :created
       # redirect_to "/homes/#{@home.id}"
     else
-      render json: {errors: home.errors.full_messages}, status: :bad_request
+      render json: {errors: @home.errors.full_messages}, status: :bad_request
     end
   end
 
