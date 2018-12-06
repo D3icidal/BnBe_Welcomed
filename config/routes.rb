@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   #BOOKINGS (stays)
   post '/bookings' => 'bookings#create'     #host creates new booking
+  get '/bookings' => 'bookings#index' #Show all of users bookings for all homes.
+  get '/bookings/:id' => 'bookings#show' #Show a single booking
+
 
   
 

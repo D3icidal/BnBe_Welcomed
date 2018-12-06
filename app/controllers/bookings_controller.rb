@@ -22,17 +22,33 @@ class BookingsController < ApplicationController
       render json: {message: 'booking created successfully'}, status: :created
     else
       puts "\n\n\tinside create, booking failed! #{booking}\n\n"
-       booking.save!
+      booking.save!
       render json: {errors: booking.errors.full_messages}, status: :bad_request
     end
   end
 
   def show
-
+    if current_user
+      puts "\n\n\t in bookings show. Current user #{current_user.email}"
+      booking = Booking.find_by(id: params[:booking_id])
+      p booking
+      render json: booking
+    else
+      puts "\n\n\t Bad current_user"
+      render json: "bad user, maybe log in?", status: :unauthorized
+    end
   end
 
   def index
-
+    if current_user
+      puts "\n\n\t in bookings index. Current user #{current_user.email}"
+      bookings = current_user.bookings
+      p bookings
+      render json: bookings
+    else
+      puts "\n\n\t Bad current_user"
+      render json: "bad user, maybe log in?", status: :unauthorized
+    end
   end
 
   def checkout

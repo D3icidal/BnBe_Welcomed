@@ -64,7 +64,7 @@ BUG: keep getting logged out of vue constantly. loosing jwt?
 =====
 
 next time:
-#bug fixing homesnew.vue - error handling on line 81 - how to get a status 401 to show up on the page? it shows up in the console.log(errors)
+bug fixing homesnew.vue - error handling on line 81 - how to get a status 401 to show up on the page? it shows up in the console.log(errors)
 Goals:
 -restricted pages (index, create new, my profile) => redirect to /home with error displayed
 -links to restricted pages should be grayed out on navbar
