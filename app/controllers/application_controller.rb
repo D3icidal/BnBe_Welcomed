@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless current_user
-      render json: {}, status: :unauthorized
       puts "\n\n\tfailed in authe_user a_c.rb**********\n"
+      render json: {}, status: :unauthorized
     end
   end
 

@@ -29,12 +29,19 @@ class BookingsController < ApplicationController
 
   def show
     if current_user
-      puts "\n\n\t in bookings show. Current user #{current_user.email}"
-      booking = Booking.find_by(id: params[:booking_id])
-      p booking
-      render json: booking
+      puts "\n\n\t in bookings show. Current user #{current_user.email}\n\n"
+      p current_user.bookings.ids.include?(params[:id])
+      puts current_user.bookings.ids
+      p params[:id]
+      if current_user.bookings.ids.include?(params[:id].to_i)
+        booking = Booking.find_by(id: params[:id])
+        p booking
+        render json: booking
+      else
+        puts "\n\n\n\tbooking_id #{params[:id]} does not belong to current user's bookings of: #{current_user.bookings.ids}\n\n"
+      end
     else
-      puts "\n\n\t Bad current_user"
+      puts "\n\n\t Bad current_user, maybe login?"
       render json: "bad user, maybe log in?", status: :unauthorized
     end
   end
@@ -46,7 +53,7 @@ class BookingsController < ApplicationController
       p bookings
       render json: bookings
     else
-      puts "\n\n\t Bad current_user"
+      puts "\n\n\t Bad current_user (inside bookings index)"
       render json: "bad user, maybe log in?", status: :unauthorized
     end
   end

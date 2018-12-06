@@ -66,14 +66,14 @@ class HomesController < ApplicationController
   end
 
 
-  def edit
-    if Home.find_by(id: params[:id])
-      @home = Home.find_by(id: params[:id])
-      render "edit.html.erb"    #TODO will be replaced by vue
-    else
-      render json: "Bad lookup. ID searched: #{params[:id]}", status: :bad_request #TODO make an error page
-    end
-  end
+  # def edit
+  #   if Home.find_by(id: params[:id])
+  #     @home = Home.find_by(id: params[:id])
+  #     render "edit.html.erb"    #TODO will be replaced by vue
+  #   else
+  #     render json: "Bad lookup. ID searched: #{params[:id]}", status: :bad_request #TODO make an error page
+  #   end
+  # end
 
 
   def update    
