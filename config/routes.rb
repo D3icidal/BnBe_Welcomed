@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   #BOOKINGS (stays)
   post '/bookings' => 'bookings#create'     #host creates new booking
-  get '/bookings' => 'bookings#index' #Show all of users bookings for all homes.
+  get '/bookings' => 'bookings#index' #Show all of hosts bookings for all homes.
   get '/bookings/:id' => 'bookings#show' #Show a single booking
 
 
@@ -39,10 +39,11 @@ Rails.application.routes.draw do
   
 
   #BOOKING-SESSIONS (GUEST LOGINS)
+  get '/guides/:code' => 'guides#show'
   #get '/bookings/sessions/new' => 'booking_sessions#new'     #guestlogin to see home - handled in view
-  post '/bookings/:booking_code'  => 'booking_sessions#create' #guestlogin create token session
+  # post '/bookings/:booking_code'  => 'booking_sessions#create' #guestlogin create token session
+  # get '/bookings/:booking_code'  =>  'booking#show'  #guest go to home/ use home
 
-  get '/bookings/:booking_code'  =>  'booking#show'  #guest go to home/ use home
 
 
   #WILDCARDs
