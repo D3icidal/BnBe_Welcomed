@@ -25,15 +25,17 @@ Rails.application.routes.draw do
   patch '/homes/:id' => 'homes#update'  #Home - changes get commited to DB
   delete '/homes/:id' => 'homes#destroy' #Home gets marked as inactive in DB
 
+
   #BOOKINGS (stays)
   post '/bookings' => 'bookings#create'     #host creates new booking
   get '/bookings' => 'bookings#index' #Show all of users bookings for all homes.
   get '/bookings/:id' => 'bookings#show' #Show a single booking
 
+
   #AMENITIES
   get '/amenities/:home_id' => 'amenities#show' #show all amenities for a single home
-  get '/amenities/' => 'amenities#index' #show all amenities for a single home
-
+  get '/amenities' => 'amenities#index' #show all amenities for a single home
+  post '/amenities' => 'amenities#create' #create
   
 
   #BOOKING-SESSIONS (GUEST LOGINS)
