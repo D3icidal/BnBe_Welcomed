@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get '/bookings' => 'bookings#index' #Show all of users bookings for all homes.
   get '/bookings/:id' => 'bookings#show' #Show a single booking
 
+  #AMENITIES
+  get '/amenities/:home_id' => 'amenities#show' #show all amenities for a single home
+  get '/amenities/' => 'amenities#index' #show all amenities for a single home
 
   
 

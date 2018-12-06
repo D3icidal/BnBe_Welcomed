@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_205302) do
+ActiveRecord::Schema.define(version: 2018_12_06_014154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,16 +42,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_205302) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.text "comment"
-  end
-
-  create_table "home_amenities", force: :cascade do |t|
-    t.integer "home_id"
-    t.integer "amenity_id"
-    t.boolean "is_usable"
-    t.string "location"
-    t.text "instructions"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "homes", force: :cascade do |t|

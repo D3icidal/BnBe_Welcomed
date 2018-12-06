@@ -1,3 +1,3 @@
 class Amenity < ApplicationRecord
-  belongs_to :home
+  belongs_to :home  
 end
