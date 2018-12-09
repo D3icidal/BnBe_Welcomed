@@ -10,10 +10,10 @@ class SessionsController < ApplicationController
         Rails.application.credentials.fetch(:secret_key_base), # the secret key
         'HS256' # the encryption algorithm
       )
-      render json: {jwt: jwt, email: user.email, user_id: user.id}, status: :created
+      render json: {jwt: jwt, email: user.email, user_id: user.id}, status: 200
     else
       puts "\n\n\tseessions_controller AUTH ERROR!!! User: #{user}, email used for lookup #{params[:email]}. \t*****8\n\n"
-      render json: "Failed in sessions controllerwith user.email: #{user.email}", status: :unauthorized
+      render json: "Bad password or email combination", status: :unauthorized
     end
   end
 
