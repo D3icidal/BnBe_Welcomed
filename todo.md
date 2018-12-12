@@ -74,7 +74,11 @@ dec 7
 
 add missing links
 
+navbar needs to be fixed
+
 add catagorieis?
+
+theme installation
 
 setup a redirection if user is not logged in they shouldn't be allowed to go to homes-new or homes-index
 
