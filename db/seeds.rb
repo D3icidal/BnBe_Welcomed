@@ -12,34 +12,63 @@ require 'faker'
 #   i.delete
 # end  
 
-# 20.times do 
-#   Host.create(
-#   first_name: Faker::Name.first_name,
-#   last_name: Faker::Name.last_name,
-#   email: Faker::Internet.email,
-#   phone: Faker::PhoneNumber.cell_phone,
-#   bio: Faker::VForVendetta.quote,
-#   image_url: "icon.jpg",
-#   password: "password",
-#   password_confirmation: "password",
-#   ip: "192.168.1.1"
-#   )
-# end
+Home.destroy_all
+Amenities.destroy_all
+Bookings.destroy_all
+GuestbookComment.destroy_all
+Images.destroy_all
+User.destroy_all
+
+User.create!({
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: "test@test.com",
+  phone: Faker::PhoneNumber.cell_phone,
+  bio: Faker::VForVendetta.quote,
+  image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  password: "password",
+  password_confirmation: "password",
+  ip: "192.168.1.1"
+  })
+
+15.times do 
+  User.create!({
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  email: Faker::Internet.email,
+  phone: Faker::PhoneNumber.cell_phone,
+  bio: Faker::VForVendetta.quote,
+  image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  password: "password",
+  password_confirmation: "password",
+  ip: "192.168.1.1"
+  })
+end
 
 
-# 25.times do 
-#   Home.create(
-#   name: Faker::Company.catch_phrase,
-#   host_id: Host.all.sample.id,
-#   is_active: true,  # !!!! => "t"
-#   wifi_password: nil,
-#   bedrooms: rand(1..5),
-#   bathrooms: rand(1..3),
-#   street_address: Faker::Address.street_address,
-#   zipcode: Faker::Address.zip,
-#   state: Faker::Address.state_abbr
-#   )
-# end
+50.times do 
+  Home.create({
+    name: Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + Faker::Company.buzzword + ' ' + Faker::Hipster.words(rand(1..2)).join(" ") + [" cottage", " cabin", "lodge", " retreat", " apartment", " home", "", " getaway", " Tiny House"].sample,
+  # name: Faker::Hipster.sentence(rand(1..2)) + ' ' + Faker::Company.buzzword + ' ' + Faker::Hipster.sentence(rand(1..2))
+  # name: Faker::Company.catch_phrase,
+  user_id: User.all.sample.id,
+  is_active: true,  # !!!! => "t"
+  wifi_password: "",
+  guest_password: Faker::Hipster.word,
+  bedrooms: rand(1..5),
+  bathrooms: rand(1..3),
+  street_address: Faker::Address.street_address,
+  zipcode: Faker::Address.zip,
+  state: Faker::Address.state_abbr
+  })
+end
+
+Home.all.each do |home|
+  Amenity.create!({
+    name: ["Coffee Maker", "Pour-Over Coffee", "Turkish Coffee Maker", "Cowboy Coffee"].sample,
+    
+  })
+end
 
 # Amenity.create!([
 #   {name: "coffee", icon_url: "testam1.jpg", instructions: "turn on, add water", location: "kitchen counter", is_usable: true, home_id: 8},
