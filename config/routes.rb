@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   post '/amenities' => 'amenities#create' #create
   
 
-  #BOOKING-SESSIONS (GUEST LOGINS)
+  #GUIDES (GUEST LOGINS)
+  patch '/guides/login/:id' => 'guides#update' #change code
+
   get '/guides/:code' => 'guides#show'
   #get '/bookings/sessions/new' => 'booking_sessions#new'     #guestlogin to see home - handled in view
   # post '/bookings/:booking_code'  => 'booking_sessions#create' #guestlogin create token session

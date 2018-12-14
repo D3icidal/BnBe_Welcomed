@@ -4,6 +4,9 @@ json.name home.name
 json.guestbook_comments home.guestbook_comments
 json.is_active home.is_active 
 json.wifi_password home.wifi_password 
+json.guest_password home.guest_password
+json.guest_password_new ""
+json.errors []
 json.bedrooms home.bedrooms 
 json.bathrooms home.bathrooms 
 json.zipcode home.zipcode 

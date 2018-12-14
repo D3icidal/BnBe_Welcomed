@@ -6,6 +6,7 @@ class Home < ApplicationRecord
   has_many :images
 
   validates :name, presence: true #must have a name
+  validates :guest_password, presence: true, uniqueness: true
 
 end
 

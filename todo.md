@@ -76,17 +76,21 @@ add missing links
 
 navbar needs to be fixed
 
-add catagorieis?
+create. a home-guest page
 
 theme installation
+
+figure out how to handle guest login - what do you do with password, does it need to be hashed or can it be plaintext since it is onetime use,
+
+=======
+
+Host can create/change Guide-code
+
+add catagorieis?
 
 setup a redirection if user is not logged in they shouldn't be allowed to go to homes-new or homes-index
 
 when viewing index but not logged in => redirect to home with error message
-
-figure out how to handle guest login - what do you do with password, does it need to be hashed or can it be plaintext since it is onetime use,
-
-create. a home-guest page
 
 add login/signup with devise
 

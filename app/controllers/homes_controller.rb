@@ -8,14 +8,14 @@ class HomesController < ApplicationController
     else
       puts "\n\n\t No User Logged in !!! ********* \n\n"
       puts "\n\n\tfailed in index**********\n"
-      render json: {}, status: :bad_request
+      render json: {}, status: 401
     end
 
     @homes = Home.where(user_id: current_user.id)    
     puts "\n\t\t homes - index. find_by(user_id: #{current_user.id}\t***********\n\n"
     #TODO maybe change this to case/when 
     render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
-    redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home
+    redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home #TODO tested?
     redirect_to "/homes/new" if @homes.length == 0    #no homes = make new home
   end
 
@@ -31,10 +31,13 @@ class HomesController < ApplicationController
       name: params[:name],  #must have a name or fails validation
       user_id: current_user.id,   
       is_active: true,
-      wifi_password: params[:wifi_password] || nil,      
+      guest_password: params[:guest_password] || "",      
+      wifi_password: params[:wifi_password] || "",      
       bedrooms: params[:bedrooms] || 1,
       bathrooms: params[:bathrooms] || 1,
-      street_address: params[:street_address] || ""
+      street_address: params[:street_address] || "",
+      zipcode: params[:zipcode] || "",
+      state: params[:state] || ""
       # zipcode: params[:zipcode]
       )
 

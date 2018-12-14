@@ -36,7 +36,7 @@ class AmenitiesController < ApplicationController
     @amenity = Amenity.new(
       name: params[:name],  #must have a name or fails validation
       is_usable: true,
-      icon_url: params[:icon_url] || nil,      
+      icon_url: params[:icon_url] || "",      
       instructions: params[:instructions] || "",
       location: params[:location] || "",
       home_id: params[:home_id] || ""
