@@ -19,13 +19,30 @@ GuestbookComment.destroy_all
 Images.destroy_all
 User.destroy_all
 
+homeImages = [
+  "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", #large american
+  "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80", #small white
+  "https://images.unsplash.com/photo-1504615755583-2916b52192a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80", #london townhouse
+  "https://images.unsplash.com/photo-1541331913285-46e639cc23c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80", #brit point
+  "https://images.unsplash.com/photo-1511355883089-360b4fbd4079?ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80", #mountain
+  "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1047&q=80" #villa
+]
+
+userImages = [
+  "https://images.unsplash.com/photo-1532635867775-b6bbb158072d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", #sarah
+  "https://images.unsplash.com/photo-1532553740552-40cafa91e7ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80", #couple kissing
+  "https://images.unsplash.com/photo-1528213049955-adbe6fe1dcbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80", 
+  "https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=941&q=80", #bw profile
+]
+
 User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: "test@test.com",
   phone: Faker::PhoneNumber.cell_phone,
   bio: Faker::VForVendetta.quote,
-  image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  # image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  image_url: userImages[3],
   password: "password",
   password_confirmation: "password",
   ip: "192.168.1.1"
@@ -38,7 +55,8 @@ User.create!({
   email: Faker::Internet.email,
   phone: Faker::PhoneNumber.cell_phone,
   bio: Faker::VForVendetta.quote,
-  image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  # image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
+  image_url: userImages.sample
   password: "password",
   password_confirmation: "password",
   ip: "192.168.1.1"
@@ -63,12 +81,53 @@ end
   })
 end
 
+"Keurig Coffee Maker"
+
 Home.all.each do |home|
   Amenity.create!({
-    name: ["Coffee Maker", "Pour-Over Coffee", "Turkish Coffee Maker", "Cowboy Coffee"].sample,
-    
+    name: ["Coffee Maker", "Pour-Over Coffee", "Turkish Coffee Maker", "Cowboy Coffee", "Old blue coffee pot"].sample,
+    icon_url: "https://img.icons8.com/wired/64/000000/cafe.png",
+    instructions: "Use the filtered water in the fridge, add some coffee from the container on the right, place your cup down first, and then press start. Please only mugs and NOT the glasses! Thank you!\n I there is creamer, milk, and sugar, help yourself.",
+    location: "Next to the stove. Milk/Creamer in the fridge. If you need more coffee, check under the sink!",
+    is_usable: true,
+    home_id: home.id
+  })
+
+  Amenity.create!({
+    name: "Keurig Coffee Maker",
+    icon_url: "https://img.icons8.com/ios/50/000000/coffee-maker.png",
+    instructions: "The Keurig is prefilled with water! Just add the flavor pod you want, place your cup, then press \"Brew\"\nThere is also hot chocolate and apple cider!",
+    location: "In the lounge/office (there is also one in the basement game room if you want!",
+    is_usable: true,
+    home_id: home.id
+  })
+
+  Amenity.create!({
+    name: "Washer and Dryer",
+    icon_url: "https://img.icons8.com/wired/64/000000/washing-machine.png",
+    instructions: "For the Washing Machine: Just add a little bit of soap (blue bottle), add your clothes, and hit start. You might have to hit start hard.",
+    location: "Garage",
+    is_usable: true,
+    home_id: home.id
+  })
+
+  Amenity.create!({
+    name: "Pool",
+    icon_url: "https://img.icons8.com/ios/50/000000/swimming-pool.png",
+    instructions: "Sorry the pool is closed for the winter, please do NOT try to use it or turn on the water!",
+    location: "Backyard",
+    is_usable: false,
+    home_id: home.id
+  })
+
+  Image.create!({
+    home_id: home.id,
+    url: homeImages[rand(0..4)],
   })
 end
+
+
+
 
 # Amenity.create!([
 #   {name: "coffee", icon_url: "testam1.jpg", instructions: "turn on, add water", location: "kitchen counter", is_usable: true, home_id: 8},
