@@ -11,5 +11,7 @@ json.bedrooms home.bedrooms
 json.bathrooms home.bathrooms 
 json.zipcode home.zipcode 
 json.state home.state 
+json.images_count home.images.count
+json.images   home.images
 json.created_at home.created_at 
 json.updated_at home.updated_at 

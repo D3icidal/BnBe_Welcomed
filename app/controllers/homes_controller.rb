@@ -8,7 +8,7 @@ class HomesController < ApplicationController
     else
       puts "\n\n\t No User Logged in !!! ********* \n\n"
       puts "\n\n\tfailed in index**********\n"
-      render json: {}, status: 401
+      render json: {error: "Not Logged In"}, status: 401
     end
 
     @homes = Home.where(user_id: current_user.id)    
@@ -31,7 +31,7 @@ class HomesController < ApplicationController
       name: params[:name],  #must have a name or fails validation
       user_id: current_user.id,   
       is_active: true,
-      guest_password: params[:guest_password] || "",      
+      guest_password: params[:guest_password] || home_Code_Gen,      
       wifi_password: params[:wifi_password] || "",      
       bedrooms: params[:bedrooms] || 1,
       bathrooms: params[:bathrooms] || 1,
@@ -81,15 +81,16 @@ class HomesController < ApplicationController
 
   def update    
     @home = Home.find_by(id: params[:id])
-    @home.name = params[:name]
+    @home.name = params[:name] || @home.name 
     # @home.user_id = current_user.id
     @home.is_active = params[:is_active] || true
-    @home.wifi_password = params[:wifi_password] || nil      
-    @home.bedrooms = params[:bedrooms] || 1
-    @home.bathrooms = params[:bathrooms] || 1
-    @home.zipcode = params[:zipcode]
-    @home.street_address = params[:street_address]
-    @home.state = params[:state]
+    @home.wifi_password = params[:wifi_password] || @home.wifi_password      
+    @home.guest_password = params[:guest_password] || @home.guest_password       
+    @home.bedrooms = params[:bedrooms] || @home.bedrooms 
+    @home.bathrooms = params[:bathrooms] || @home.bathrooms
+    @home.zipcode = params[:zipcode] || @home.zipcode
+    @home.street_address = params[:street_address] || @home.street_address
+    @home.state = params[:state] || @home.state
       
     if @home.save!
       render json: {message: 'Home created successfully'}, status: :created
@@ -101,5 +102,12 @@ class HomesController < ApplicationController
 
   # def destroy #might skip this one
   # end
+
+
+  ##########3 Helper / Misc Methods
+
+  def home_Code_Gen
+    (Faker::Hipster.word).downcase + rand(1..30).to_s
+  end
 
 end

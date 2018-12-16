@@ -13,10 +13,10 @@ require 'faker'
 # end  
 
 Home.destroy_all
-Amenities.destroy_all
-Bookings.destroy_all
+Amenity.destroy_all
+Booking.destroy_all
 GuestbookComment.destroy_all
-Images.destroy_all
+Image.destroy_all
 User.destroy_all
 
 homeImages = [
@@ -54,9 +54,9 @@ User.create!({
   last_name: Faker::Name.last_name,
   email: Faker::Internet.email,
   phone: Faker::PhoneNumber.cell_phone,
-  bio: Faker::VForVendetta.quote,
+  bio: [Faker::Dune.saying, Faker::TvShows::SiliconValley.motto, Faker::HarryPotter.quote].sample,
   # image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
-  image_url: userImages.sample
+  image_url: userImages.sample,
   password: "password",
   password_confirmation: "password",
   ip: "192.168.1.1"
@@ -66,7 +66,11 @@ end
 
 50.times do 
   Home.create({
-    name: Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + Faker::Company.buzzword + ' ' + Faker::Hipster.words(rand(1..2)).join(" ") + [" cottage", " cabin", "lodge", " retreat", " apartment", " home", "", " getaway", " Tiny House"].sample,
+    name: Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + 
+      Faker::Company.buzzword + ' ' + 
+      Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + 
+      Faker::Hacker.ingverb + 
+      [" cottage", " cabin", " lodge", " retreat", " apartment", " home", "", " getaway", " Tiny House"].sample,
   # name: Faker::Hipster.sentence(rand(1..2)) + ' ' + Faker::Company.buzzword + ' ' + Faker::Hipster.sentence(rand(1..2))
   # name: Faker::Company.catch_phrase,
   user_id: User.all.sample.id,
@@ -81,14 +85,12 @@ end
   })
 end
 
-"Keurig Coffee Maker"
-
 Home.all.each do |home|
   Amenity.create!({
     name: ["Coffee Maker", "Pour-Over Coffee", "Turkish Coffee Maker", "Cowboy Coffee", "Old blue coffee pot"].sample,
     icon_url: "https://img.icons8.com/wired/64/000000/cafe.png",
-    instructions: "Use the filtered water in the fridge, add some coffee from the container on the right, place your cup down first, and then press start. Please only mugs and NOT the glasses! Thank you!\n I there is creamer, milk, and sugar, help yourself.",
-    location: "Next to the stove. Milk/Creamer in the fridge. If you need more coffee, check under the sink!",
+    instructions: "Use the filtered water in the fridge, add some coffee from the blue container on the right, place your cup down first, and then press start. Please use only mugs and NOT the glasses! Thank you!\n In the fridge there is creamer, milk, and sugar - help yourself.",
+    location: "Next to the stove. Milk/Creamer in the fridge. If you need more ground coffee, check under the sink!",
     is_usable: true,
     home_id: home.id
   })
@@ -96,7 +98,7 @@ Home.all.each do |home|
   Amenity.create!({
     name: "Keurig Coffee Maker",
     icon_url: "https://img.icons8.com/ios/50/000000/coffee-maker.png",
-    instructions: "The Keurig is prefilled with water! Just add the flavor pod you want, place your cup, then press \"Brew\"\nThere is also hot chocolate and apple cider!",
+    instructions: "The Keurig is prefilled with water, just add the flavor pod you want, place your cup, then press \"Brew\"\nThere is also hot chocolate and apple cider!",
     location: "In the lounge/office (there is also one in the basement game room if you want!",
     is_usable: true,
     home_id: home.id
@@ -105,7 +107,7 @@ Home.all.each do |home|
   Amenity.create!({
     name: "Washer and Dryer",
     icon_url: "https://img.icons8.com/wired/64/000000/washing-machine.png",
-    instructions: "For the Washing Machine: Just add a little bit of soap (blue bottle), add your clothes, and hit start. You might have to hit start hard.",
+    instructions: "For the Washing Machine: Just add a little bit of soap (blue bottle), add your clothes, and hit start. You might have to hit the start button hard. \n Please just leave your towels/blankets anywhere, I will happily take care of washing those.",
     location: "Garage",
     is_usable: true,
     home_id: home.id
@@ -124,6 +126,8 @@ Home.all.each do |home|
     home_id: home.id,
     url: homeImages[rand(0..4)],
   })
+
+  Booking
 end
 
 
