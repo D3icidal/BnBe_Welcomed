@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
+
+gem 'httparty'
+gem 'nest_thermostat'
 gem 'seed_dump'
 gem 'jwt'
 gem 'rack-cors', require: 'rack/cors'

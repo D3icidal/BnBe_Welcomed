@@ -58,10 +58,17 @@ class HomesController < ApplicationController
       puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
     else
       puts "\n\n\t No User Logged in !!! ********* \n\n"
-    end
+    end  
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
       # render "show.html.erb"
+      @weather = weather(@home.zipcode)
+      if @weather
+        puts "\n\n\tWeather for #{@home.name} found: #{@weather}\n\n"
+      else
+        puts "\n\n\tFaking weather - issue with zip:#{@home.zipcode} weather: #{weather(@home.zipcode)}"
+        @weather = nil #TODO
+      end
       render "show.json.jbuilder"
     else
       render json: "Bad lookup. ID searched: #{params[:id]}", status: :bad_request #TODO make an error page
@@ -109,5 +116,33 @@ class HomesController < ApplicationController
   def home_Code_Gen
     (Faker::Hipster.word).downcase + rand(1..30).to_s
   end
+
+  def weather(zipcode)
+    response = HTTParty.get('https://weather.cit.api.here.com/weather/1.0/report.json?product=forecast_7days_simple&zipcode=' + 
+      zipcode + 
+      '&oneobservation=true&app_id=' +
+      Rails.application.credentials.dig(:hereappid) + 
+      '&app_code=' +
+      Rails.application.credentials.dig(:hereappcode) )
+    forecast = []
+    p response
+    response["dailyForecasts"]["forecastLocation"]["forecast"].each do |day| 
+      forecast << day
+    end
+  end
+
+  # def weather(zipcode) #using openweathermap (doesn't do daily weather)
+  #   currentWeatherResponse = HTTParty.get('http://api.openweathermap.org/data/2.5/weather?zip=' +
+  #     zipcode + 
+  #     '&appid=' +
+  #     Rails.application.credentials.dig(:openweathermap) +
+  #     '&units=imperial')
+  #   forcastWeatherResponse = HTTParty.get('http://api.openweathermap.org/data/2.5/forecast?zip=' +
+  #     zipcode + 
+  #     '&appid=' +
+  #     Rails.application.credentials.dig(:openweathermap) +
+  #     '&units=imperial')
+  #   currentWeather = currentWeatherResponse["weather"].first["description"]
+  # end
 
 end

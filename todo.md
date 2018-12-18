@@ -95,3 +95,15 @@ when viewing index but not logged in => redirect to home with error message
 add login/signup with devise
 
 figure out how to implement devise and redo host schema to match
+
+Guide Home - pages
+
+sidebar
+Welcome (checkin)
+
+Features/Amenities
+Parking
+Nearby Attractions
+Contact Me
+Emergencies
+Checkout

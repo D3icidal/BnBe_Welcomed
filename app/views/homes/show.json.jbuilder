@@ -6,3 +6,4 @@ json.host_image_url @home.user.image_url
 json.host_email @home.user.email
 json.host_phone @home.user.phone
 json.amenities @home.amenities
+json.weather  @weather
