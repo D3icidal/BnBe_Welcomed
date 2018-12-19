@@ -12,11 +12,15 @@ class HomesController < ApplicationController
     end
 
     @homes = Home.where(user_id: current_user.id)    
-    puts "\n\t\t homes - index. find_by(user_id: #{current_user.id}\t***********\n\n"
+    puts "\n\t\t homes - index.find_by(user_id: #{current_user.id}\t count:#{@homes.count} length:#{@homes.length}\t***********\n\n\tHomes:"
+    p @homes    
+    puts "if @homes.length == 1" if @homes.length == 1
+    puts "if @homes.length == 0" if @homes.length == 0
     #TODO maybe change this to case/when 
-    render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
-    redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home #TODO tested?
-    redirect_to "/homes/new" if @homes.length == 0    #no homes = make new home
+    render "index.json.jbuilder" ##index fo all homes
+    # render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
+    # redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home #TODO tested?
+    # redirect_to "/homes/new" if @homes.length == 0    #no homes = make new home
   end
 
   def create
@@ -99,7 +103,7 @@ class HomesController < ApplicationController
     @home.street_address = params[:street_address] || @home.street_address
     @home.state = params[:state] || @home.state
       
-    if @home.save!
+    if @home.save
       render json: {message: 'Home created successfully'}, status: :created
       # redirect_to "/homes/#{@home.id}"
     else

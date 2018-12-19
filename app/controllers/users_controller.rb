@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-      
+     
 
   def create
     user = User.new(
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
       password: params[:password] || "password",
       password_confirmation: params[:password_confirmation] || "password"
     )
-    if user.save!
+    if user.save
       # render json: {message: 'User created successfully'}, status: :created
       puts "\n\n\tUser created and saved!!!! #{user} #{user.email}\t*******\n\n"
       redirect_to "/users/#{user.id}"
@@ -58,7 +57,7 @@ class UsersController < ApplicationController
     #@user.password = params[:password] || "password"
     #@user.password_confirmation = params[:password_confirmation] || "password"
 
-    if @user.save!
+    if @user.save
       # render json: {message: 'User created successfully'}, status: :created
       redirect_to "/homes/#{@user.id}" #redirect to showpage
     else
