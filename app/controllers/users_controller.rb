@@ -3,12 +3,12 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(
-      first_name: params[:first_name] || nil,
-      last_name: params[:last_name] || nil,
-      email: params[:email] || nil,
-      phone: params[:phone] || nil,
-      bio: params[:bio] || nil,
-      image_url: params[:image_url] || nil,      
+      first_name: params[:first_name] || "",
+      last_name: params[:last_name] || "",
+      email: params[:email] || "",
+      phone: params[:phone] || "",
+      bio: params[:bio] || "",
+      image_url: params[:image_url] || "",      
       password: params[:password] || "password",
       password_confirmation: params[:password_confirmation] || "password"
     )
@@ -48,12 +48,12 @@ class UsersController < ApplicationController
 
   def update    
     @user = User.find_by(id: params[:id])
-    @user.first_name = params[:first_name] || nil
-    @user.last_name = params[:last_name] || nil
-    @user.email = params[:email] || nil
-    @user.phone = params[:phone] || nil
-    @user.bio = params[:bio] || nil
-    @user.image_url = params[:image_url] || nil,     
+    @user.first_name = params[:first_name] || ""
+    @user.last_name = params[:last_name] || ""
+    @user.email = params[:email] || ""
+    @user.phone = params[:phone] || ""
+    @user.bio = params[:bio] || ""
+    @user.image_url = params[:image_url] || "",     
     #@user.password = params[:password] || "password"
     #@user.password_confirmation = params[:password_confirmation] || "password"
 

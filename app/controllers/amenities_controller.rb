@@ -4,8 +4,13 @@ class AmenitiesController < ApplicationController
       puts "\n\n\t in amenities show. Current user #{current_user.email}\n\n"
       if Home.find_by(id: params[:home_id]).amenities 
         amenities = Home.find_by(id: params[:home_id]).amenities
+        if amenities.count < 4 
+          amenities = []
+          3.times { amenities << Amenity.find_by(id: 999)} #If user has no amenities, throw in some sample fake ones for them. Looks nice and helps prevent destruction of vue.
+        end
       else
         amenities = []
+        3.times { amenities << Amenity.find_by(id: 999)} #If user has no amenities, throw in some sample fake ones for them. Looks nice and helps prevent destruction of vue.
       end
       render json: amenities
     else
