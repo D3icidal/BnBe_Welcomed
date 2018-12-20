@@ -1,4 +1,5 @@
 class HomesController < ApplicationController
+  # require "ssh_wifi.rb"
   before_action :authenticate_user  
   #JSON RETURNS ONLY
 
@@ -9,8 +10,7 @@ class HomesController < ApplicationController
       puts "\n\n\t No User Logged in !!! ********* \n\n"
       puts "\n\n\tfailed in index**********\n"
       render json: {error: "Not Logged In"}, status: 401
-    end
-
+    end    
     @homes = Home.where(user_id: current_user.id)    
     puts "\n\t\t homes - index.find_by(user_id: #{current_user.id}\t count:#{@homes.count} length:#{@homes.length}\t***********\n\n\tHomes:"
     p @homes    
@@ -18,9 +18,8 @@ class HomesController < ApplicationController
     puts "if @homes.length == 0" if @homes.length == 0
     #TODO maybe change this to case/when 
     render "index.json.jbuilder" ##index fo all homes
-    # render "index.json.jbuilder" if @homes.length > 1 ##index fo all homes
-    # redirect_to "/homes/#{@homes.first.id}" if @homes.length == 1 #show the 1 home #TODO tested?
-    # redirect_to "/homes/new" if @homes.length == 0    #no homes = make new home
+
+    
   end
 
   def create
@@ -47,7 +46,7 @@ class HomesController < ApplicationController
 
     if @home.save
       puts "\n\n\tinside create, home saved! #{@home}\n\n"
-      render json: {message: 'Home created successfully'}, status: :created
+      render json: @home.id, status: :created
     else
       puts "\n\n\tinside create, home failed! #{@home}\n\n"
       render json: {errors: @home.errors.full_messages}, status: :bad_request
@@ -57,12 +56,7 @@ class HomesController < ApplicationController
   # def index
 
   # end
-  def show
-    if current_user
-      puts "\n\n\tCurrent User: #{current_user} #{current_user.email}\t*******\n\n" 
-    else
-      puts "\n\n\t No User Logged in !!! ********* \n\n"
-    end  
+  def show    
     if Home.find_by(id: params[:id])
       @home = Home.find_by(id: params[:id])
       # render "show.html.erb"

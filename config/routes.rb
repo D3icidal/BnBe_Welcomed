@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :sections
+  # resources :sections
   # STEP 1: A ROUTE triggers a controller action
   # verb "/urls" => "namespace/controllers#action"
+
+  #SECTIONS (of guide)
+  post '/sections' => 'sections#create'
+  get '/sections/:id/createAll' => 'sections#createAll', defaults: { format: 'json' }#creates a bunch of default sections at once.
+  get '/sections/:id' => 'sections#show', defaults: { format: 'json' }
+
+  
 
   #HOSTs (users)
   post '/users' => 'users#create'

@@ -17,3 +17,4 @@ elsif @home.amenities.count == 0 || @home.amenities != true
 else
   json.amenities @home.amenities
 end
+
