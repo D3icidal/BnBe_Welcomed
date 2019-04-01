@@ -1,24 +1,6 @@
-# README
+# BnBWelcomed
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails API & Vue.js app permits homeowners to manage and package information for their guests when guests come to stay on a property.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Main technologies used:
+Rails, Vue.js, PostgreSQL, Twitter Bootstrap CSS framework.
