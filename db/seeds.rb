@@ -10,7 +10,7 @@ require 'faker'
 # homes = Home.all
 # homes.each do |i|
 #   i.delete
-# end  
+# end
 
 Home.destroy_all
 Amenity.destroy_all
@@ -31,7 +31,7 @@ homeImages = [
 userImages = [
   "https://images.unsplash.com/photo-1532635867775-b6bbb158072d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", #sarah
   "https://images.unsplash.com/photo-1532553740552-40cafa91e7ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80", #couple kissing
-  "https://images.unsplash.com/photo-1528213049955-adbe6fe1dcbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80", 
+  "https://images.unsplash.com/photo-1528213049955-adbe6fe1dcbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
   "https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=941&q=80", #bw profile
 ]
 
@@ -40,7 +40,7 @@ User.create!({
   last_name: Faker::Name.last_name,
   email: "test@test.com",
   phone: Faker::PhoneNumber.cell_phone,
-  bio: Faker::VForVendetta.quote,
+  bio: Faker::Movies::VForVendetta.quote,
   # image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
   image_url: userImages[3],
   password: "password",
@@ -48,13 +48,13 @@ User.create!({
   ip: "192.168.1.1"
   })
 
-15.times do 
+15.times do
   User.create!({
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   email: Faker::Internet.email,
   phone: Faker::PhoneNumber.cell_phone,
-  bio: [Faker::Dune.saying, Faker::TvShows::SiliconValley.motto, Faker::HarryPotter.quote].sample,
+  bio: [Faker::Books::Dune.saying, Faker::TvShows::SiliconValley.motto, Faker::Movies::HarryPotter.quote].sample,
   # image_url: "assets/img/users/user"+rand(1..5).to_s+".jpg",
   image_url: userImages.sample,
   password: "password",
@@ -64,12 +64,12 @@ User.create!({
 end
 
 
-50.times do 
+50.times do
   Home.create({
-    name: Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + 
-      Faker::Company.buzzword + ' ' + 
-      Faker::Hipster.words(rand(1..2)).join(" ") + ' ' + 
-      Faker::Hacker.ingverb + 
+    name: Faker::Hipster.words(number: rand(1..2)).join(" ") + ' ' +
+      Faker::Company.buzzword + ' ' +
+      Faker::Hipster.words(number: rand(1..2)).join(" ") + ' ' +
+      Faker::Hacker.ingverb +
       [" cottage", " cabin", " lodge", " retreat", " apartment", " home", "", " getaway", " Tiny House"].sample,
   # name: Faker::Hipster.sentence(rand(1..2)) + ' ' + Faker::Company.buzzword + ' ' + Faker::Hipster.sentence(rand(1..2))
   # name: Faker::Company.catch_phrase,
